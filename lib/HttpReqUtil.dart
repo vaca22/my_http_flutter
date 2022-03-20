@@ -44,7 +44,8 @@ class HttpReqUtil {
 
 
       if(photo!=null){
-        uploadFile(photo.path,photo.name);
+        Response response=await uploadFile(photo.path,photo.name);
+        print(response.data.toString());
       }
     }
 
@@ -57,7 +58,7 @@ class HttpReqUtil {
    */
   Future<Response> uploadFile(String filePath, String fileName) async {
     var postData = FormData.fromMap(
-        {"file": await MultipartFile.fromFile(filePath, filename: fileName)});//file是服务端接受的字段字段，如果接受字段不是这个需要修改
+        {"uploadFile": await MultipartFile.fromFile(filePath, filename: fileName)});//file是服务端接受的字段字段，如果接受字段不是这个需要修改
     var option = Options(method: "POST", contentType: "multipart/form-data");//上传文件的content-type 表单
     Dio dio   = Dio();
     return await dio.post(
