@@ -85,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
 
 
-      HttpReqUtil().getImage();
+      HttpReqUtil().downloadFile2();
     });
   }
 
