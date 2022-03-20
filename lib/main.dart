@@ -1,12 +1,15 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
 
 import 'HttpReqUtil.dart';
 
 
 void fuck() async{
+
   var url = Uri.parse('http://192.168.6.112:8082/cloud-napi/v1/register');
   Map<String, String> requestHeaders = {
     'Content-type': 'application/json',
@@ -80,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+
 
       HttpReqUtil().getImage();
     });

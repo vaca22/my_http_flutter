@@ -1,6 +1,9 @@
 
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class HttpReqUtil {
@@ -25,7 +28,10 @@ class HttpReqUtil {
   }
 
   Future getImage() async {
-
+    Directory? ss=await getExternalStorageDirectory();
+    if(ss!=null){
+      print(ss.path);
+    }
 
     var status = await Permission.camera.status;
     if (status.isDenied) {
