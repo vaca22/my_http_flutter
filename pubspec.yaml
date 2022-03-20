@@ -39,7 +39,7 @@ dependencies:
 
   dio: ^4.0.4
   image_picker: ^0.8.4+11
-
+  permission_handler: ^9.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

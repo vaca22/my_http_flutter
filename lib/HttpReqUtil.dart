@@ -1,6 +1,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class HttpReqUtil {
   Dio dio   = Dio();
@@ -25,14 +26,28 @@ class HttpReqUtil {
 
   Future getImage() async {
 
-    final ImagePicker _picker = ImagePicker();
 
-    final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+    var status = await Permission.camera.status;
+    if (status.isDenied) {
 
+    }else{
 
-    if(photo!=null){
-      uploadFile(photo.path,photo.name);
     }
+
+
+    if (await Permission.location.isRestricted) {
+
+    }else{
+      final ImagePicker _picker = ImagePicker();
+
+      final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+
+
+      if(photo!=null){
+        uploadFile(photo.path,photo.name);
+      }
+    }
+
 
 
   }
